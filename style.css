@@ -695,3 +695,8 @@ button, input, select {
     .hs-contact-form-card { padding:20px; }
     .hs-action-row { flex-direction:column; align-items:stretch; }
 }
+
+
+/* Link hover states for clear interactive feedback */
+.text-link:hover { text-decoration: underline; }
+.hs-contact-link a:hover, .hs-event-notice a:hover { text-decoration: underline; }
