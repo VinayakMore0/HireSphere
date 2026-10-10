@@ -3,14 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HireSphere</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>HireSphere | Home</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
+
+<header class="navbar">
+    <a href="index.html" class="logo">Hire<span>Sphere</span></a>
+
+    <button class="menu-toggle" aria-label="Toggle navigation"
+            aria-expanded="false">☰</button>
+
+    <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="companies.html">Companies</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact</a>
+        <a href="register.html" class="nav-button">Register as Student</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <span class="tag">YOUR CAREER STARTS HERE</span>
+            <h1>Connecting Talent<br>with <span>Opportunity.</span></h1>
+            <p>
+                Discover placement drives, explore leading companies,
+                and take the next step toward your dream career.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="companies.html" class="btn btn-primary">
+                    Explore Companies →
+                </a>
+                <a href="about.html" class="btn btn-outline">
+                    Learn More
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=85"
+                alt="Students working together at college">
+            <div class="image-note">
+                <strong>Build your future</strong>
+                <p>One opportunity at a time.</p>
+            </div>
+        </div>
+    </section>
+
     
+<!-- Placement Dashboard -->
+<section class="placement-dashboard section" id="dashboard">
+    <div class="section-heading">
+        <span class="tag">PLACEMENT REPORT 2025–26</span>
+        <h2>Placement Performance Dashboard</h2>
+        <p>Explore student outcomes and salary statistics.</p>
+    </div>
 
+    <!-- Summary cards -->
+    <div class="dashboard-kpis">
+        <div class="kpi-card">
+            <p>Students Placed</p>
+            <h3>402</h3>
+            <span>Across B.Tech and MCA</span>
+        </div>
 
+        <div class="kpi-card">
+            <p>Average CTC</p>
+            <h3>₹12.8 LPA</h3>
+            <span>Overall average</span>
+        </div>
 
-    <script src="js/script.js"></script>
+        <div class="kpi-card">
+            <p>Highest CTC</p>
+            <h3>₹36.5 LPA</h3>
+            <span>Highest reported package</span>
+        </div>
+
+        <div class="kpi-card">
+            <p>Students Opted</p>
+            <h3>447</h3>
+            <span>Opted for placement</span>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-grid">
+        <div class="chart-card">
+            <h3>Student Placement Status</h3>
+            <p class="chart-subtitle">
+                Breakdown of 447 students who opted
+            </p>
+            <div class="chart-container">
+                <canvas id="placementStatusChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <h3>Placements by Category</h3>
+            <p class="chart-subtitle">
+                Distribution of 402 placed students
+            </p>
+            <div class="chart-container">
+                <canvas id="placementCategoryChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-card chart-card-wide">
+            <h3>Average CTC by Branch</h3>
+            <p class="chart-subtitle">
+                Average compensation in lakhs per annum
+            </p>
+            <div class="chart-container bar-chart-container">
+                <canvas id="branchCtcChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <p class="dashboard-source">
+        Source: SPIT Placement Summary 2025–26.
+        CTC values are shown in LPA.
+    </p>
+</section>
+<!-- Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js" defer></script>
+
+        <p class="notice">
+            Demo statistics for website design. Replace with verified
+            college placement data before publishing.
+        </p>
+    </section>
+
+    <section class="section companies-preview">
+        <div class="section-heading">
+            <span class="tag">OUR RECRUITERS</span>
+            <h2>Explore Top Companies</h2>
+            <p>Discover organizations offering career opportunities.</p>
+        </div>
+
+        <div class="company-grid">
+            <article class="company-card">
+                <div class="company-icon">G</div>
+                <h3>Google</h3>
+                <p>Technology & Software</p>
+            </article>
+            <article class="company-card">
+                <div class="company-icon">M</div>
+                <h3>Microsoft</h3>
+                <p>Cloud & Technology</p>
+            </article>
+            <article class="company-card">
+                <div class="company-icon">T</div>
+                <h3>TCS</h3>
+                <p>IT Services & Consulting</p>
+            </article>
+            <article class="company-card">
+                <div class="company-icon">I</div>
+                <h3>Infosys</h3>
+                <p>Digital Services</p>
+            </article>
+        </div>
+
+        <div class="center">
+            <a href="companies.html" class="btn btn-primary">
+                View All Companies →
+            </a>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <h2>Ready to Start Your Career?</h2>
+        <p>Explore opportunities and prepare for your next big step.</p>
+        <a href="register.html" class="btn btn-light">Register Now</a>
+    </section>
+</main>
+
+<footer class="footer">
+    <a href="index.html" class="logo">Hire<span>Sphere</span></a>
+    <p>Connecting Talent with Opportunity.</p>
+    <p class="copyright">© 2026 HireSphere. Student placement portal demo.</p>
+</footer>
+
 </body>
 </html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | HireSphere</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+<style>
+.hs-form-field .field-error { display:none; color:#b42318; font-size:12px; margin-top:2px; }
+.hs-form-field .field-error.visible { display:block; }
+.hs-form-field input.invalid,
+.hs-form-field select.invalid,
+.hs-form-field textarea.invalid { border-color:#b42318; box-shadow:0 0 0 3px #b4231818; }
+</style>
+
+</head>
+<body>
+<header class="navbar">
+    <a href="index.html" class="logo">Hire<span>Sphere</span></a>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="companies.html">Companies</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="register.html" class="nav-button">Register as Student</a>
+    </nav>
+</header>
+<main>
+    <section class="page-banner">
+        <span class="tag">GET IN TOUCH</span>
+        <h1>How Can We Help?</h1>
+        <p>Send a message about HireSphere, placement information, or website feedback.</p>
+    </section>
+
+    <section class="section hs-contact-layout">
+        <div class="hs-contact-info">
+            <span class="tag">CONTACT INFORMATION</span>
+            <h2>Let's Talk</h2>
+            <p>HireSphere is a student placement portal demo. For official placement notices, recruitment schedules, or eligibility questions, use SPIT's official placement portal.</p>
+            <div class="hs-contact-link">
+                <strong>Official SPIT Placement Portal</strong>
+                <a href="https://placements.spit.ac.in/" target="_blank" rel="noopener noreferrer">placements.spit.ac.in ↗</a>
+            </div>
+            <div class="hs-contact-link">
+                <strong>Before you send</strong>
+                <p>This demo form does not send messages to a server. It validates your entries and displays a local confirmation only.</p>
+            </div>
+        </div>
+
+        <div class="hs-contact-form-card">
+            <h2>Send a Message</h2>
+            <p class="hs-form-intro">Fields marked with * are required.</p>
+            <form id="contactForm" class="hs-contact-form">
+                <div class="hs-form-row">
+                    <div class="hs-form-field"><label for="contactName">Full name *</label><input id="contactName" name="name" type="text" placeholder="Enter your name" required minlength="2" maxlength="100" autocomplete="name" aria-describedby="contactNameError"><span class="field-error" id="contactNameError"></span></div>
+                    <div class="hs-form-field"><label for="contactEmail">Email address *</label><input id="contactEmail" name="email" type="email" placeholder="you@example.com" required maxlength="150" autocomplete="email" aria-describedby="contactEmailError"><span class="field-error" id="contactEmailError"></span></div>
+                </div>
+                <div class="hs-form-field"><label for="contactSubject">Subject *</label>
+                    <select id="contactSubject" name="subject" required>
+                        <option value="">Choose a subject</option>
+                        <option>Website feedback</option>
+                        <option>Placement information</option>
+                        <option>Technical issue</option>
+                        <option>Other</option>
+                    </select><span class="field-error" id="contactSubjectError"></span>
+                </div>
+                <div class="hs-form-field"><label for="contactMessage">Message *</label><textarea id="contactMessage" name="message" rows="5" placeholder="How can we help?" required minlength="10" maxlength="2000" aria-describedby="contactMessageError"></textarea><span class="field-error" id="contactMessageError"></span></div>
+                <button type="submit" class="btn btn-primary">Submit Message</button>
+                <p id="contactFormStatus" class="hs-form-status" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </section>
+</main>
+<footer class="footer">
+    <a href="index.html" class="logo">Hire<span>Sphere</span></a>
+    <p>Connecting Talent with Opportunity.</p>
+    <p class="copyright">© 2026 HireSphere. Student placement portal demo.</p>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("contactFormStatus");
+    if (!form || !status) return;
+
+    const fields = {
+        name: {
+            input: document.getElementById("contactName"),
+            error: document.getElementById("contactNameError")
+        },
+        email: {
+            input: document.getElementById("contactEmail"),
+            error: document.getElementById("contactEmailError")
+        },
+        subject: {
+            input: document.getElementById("contactSubject"),
+            error: document.getElementById("contactSubjectError")
+        },
+        message: {
+            input: document.getElementById("contactMessage"),
+            error: document.getElementById("contactMessageError")
+        }
+    };
+
+    function showError(field, message) {
+        field.input.classList.add("invalid");
+        field.input.setAttribute("aria-invalid", "true");
+        field.error.textContent = message;
+        field.error.classList.add("visible");
+    }
+
+    function clearError(field) {
+        field.input.classList.remove("invalid");
+        field.input.removeAttribute("aria-invalid");
+        field.error.textContent = "";
+        field.error.classList.remove("visible");
+    }
+
+    function validateField(key) {
+        const field = fields[key];
+        const value = field.input.value.trim();
+        clearError(field);
+
+        if (!value) {
+            showError(field, "This field is required.");
+            return false;
+        }
+
+        if (key === "name") {
+            if (value.length < 2) {
+                showError(field, "Name must contain at least 2 characters.");
+                return false;
+            }
+            if (!/^[\p{L}\p{M} .'-]+$/u.test(value)) {
+                showError(field, "Use letters, spaces, apostrophes, periods, or hyphens only.");
+                return false;
+            }
+        }
+
+        if (key === "email") {
+            if (value.length > 150 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+                showError(field, "Enter a valid email address, such as you@example.com.");
+                return false;
+            }
+        }
+
+        if (key === "subject" && !value) {
+            showError(field, "Please choose a subject.");
+            return false;
+        }
+
+        if (key === "message") {
+            if (value.length < 10) {
+                showError(field, "Message must contain at least 10 characters.");
+                return false;
+            }
+            if (value.length > 2000) {
+                showError(field, "Message must be 2000 characters or fewer.");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    Object.keys(fields).forEach(function (key) {
+        const input = fields[key].input;
+        input.addEventListener("blur", function () {
+            validateField(key);
+        });
+        input.addEventListener("input", function () {
+            if (fields[key].error.classList.contains("visible")) {
+                validateField(key);
+            }
+            status.classList.remove("visible");
+            status.textContent = "";
+        });
+        input.addEventListener("change", function () {
+            if (fields[key].error.classList.contains("visible")) {
+                validateField(key);
+            }
+        });
+    });
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        status.classList.remove("visible");
+        status.textContent = "";
+
+        const isValid = Object.keys(fields).map(validateField).every(Boolean);
+        if (!isValid) {
+            const firstInvalid = form.querySelector(".invalid");
+            if (firstInvalid) firstInvalid.focus();
+            return;
+        }
+
+        status.textContent = "Validation successful. This demo has no backend, so your message has not been sent.";
+        status.classList.add("visible");
+        form.reset();
+        Object.keys(fields).forEach(function (key) {
+            clearError(fields[key]);
+        });
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companies | HireSphere</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="logo">Hire<span>Sphere</span></a>
+
+    <button class="menu-toggle" aria-label="Toggle navigation"
+            aria-expanded="false">☰</button>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="companies.html" class="active">Companies</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact</a>
+        <a href="register.html" class="nav-button">Register as Student</a>
+    </nav>
+</header>
+
+<main>
+    <section class="page-banner">
+        <span class="tag">CAREER OPPORTUNITIES</span>
+        <h1>Discover Your Next Opportunity</h1>
+        <p>
+            Explore companies, learn about their industries,
+            and find potential career paths.
+        </p>
+    </section>
+
+    <section class="section">
+        <div class="company-tools">
+            <input
+                type="search"
+                id="companySearch"
+                placeholder="Search companies..."
+                aria-label="Search companies">
+
+            <select id="industryFilter" aria-label="Filter by industry">
+                <option value="all">All Industries</option>
+                <option value="technology">Technology</option>
+                <option value="it-services">IT Services</option>
+                <option value="consulting">Consulting</option>
+                <option value="finance">Finance</option>
+            </select>
+        </div>
+
+        <p id="resultCount" class="result-count" aria-live="polite"></p>
+
+        <div class="company-grid" id="companyGrid">
+
+            <article class="company-card searchable-company"
+                     data-name="google"
+                     data-industry="technology">
+                <div class="company-icon">G</div>
+                <h3>Google</h3>
+                <p>Technology</p>
+                <p class="company-description">
+                    Opportunities in software, cloud, and data.
+                </p>
+                <a href="register.html" class="text-link">
+                    Student Registration →
+                </a>
+            </article>
+
+            <article class="company-card searchable-company"
+                     data-name="microsoft"
+                     data-industry="technology">
+                <div class="company-icon">M</div>
+                <h3>Microsoft</h3>
+                <p>Technology</p>
+                <p class="company-description">
+                    Opportunities in software and cloud computing.
+                </p>
+                <a href="register.html" class="text-link">
+                    Student Registration →
+                </a>
+            </article>
+
+            <article class="company-card searchable-company"
+                     data-name="tcs tata consultancy services"
+                     data-industry="it-services">
+                <div class="company-icon">T</div>
+                <h3>TCS</h3>
+                <p>IT Services</p>
+                <p class="company-description">
+                    Opportunities in software development and IT.
+                </p>
+                <a href="register.html" class="text-link">
+                    Student Registration →
+                </a>
+            </article>
+
+            <article class="company-card searchable-company"
+                     data-name="infosys"
+                     data-industry="it-services">
+                <div class="company-icon">I</div>
+                <h3>Infosys</h3>
+                <p>IT Services</p>
+                <p class="company-description">
+                    Opportunities in digital technology and consulting.
+                </p>
+                <a href="register.html" class="text-link">
+                    Student Registration →
+                </a>
+            </article>
+
+            <article class="company-card searchable-company"
+                     data-name="accenture"
+                     data-industry="consulting">
+                <div class="company-icon">A</div>
+                <h3>Accenture</h3>
+                <p>Consulting</p>
+                <p class="company-description">
+                    Opportunities in consulting and digital services.
+                </p>
+                <a href="register.html" class="text-link">
+                    Student Registration →
+                </a>
+            </article>
+
+            <article class="company-card searchable-company"
+                     data-name="jpmorgan chase"
+                     data-industry="finance">
+                <div class="company-icon">J</div>
+                <h3>JPMorgan Chase</h3>
+                <p>Finance</p>
+                <p class="company-description">
+                    Explore career paths in finance and technology.
+                </p>
+                <a href="register.html" class="text-link">
+                    Student Registration →
+                </a>
+            </article>
+
+        </div>
+
+        <p id="noResults" class="no-results" hidden>
+            No companies found. Try a different search or industry.
+        </p>
+
+        <p class="notice">
+            These are illustrative company listings, not confirmed
+            placement drives. Verify recruiters and vacancies with
+            your college placement cell.
+        </p>
+    </section>
+</main>
+
+<footer class="footer">
+    <a href="index.html" class="logo">Hire<span>Sphere</span></a>
+    <p>Connecting Talent with Opportunity.</p>
+    <p class="copyright">© 2026 HireSphere. Student placement portal demo.</p>
+</footer>
+
+</body>
+</html>
