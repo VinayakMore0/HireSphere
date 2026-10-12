@@ -48,7 +48,7 @@
             </div>
             <div class="hs-contact-link">
                 <strong>Before you send</strong>
-                <p>This demo form does not send messages to a server. It validates your entries and displays a local confirmation only.</p>
+                <p>Your message will be validated and saved to the HireSphere database when you submit this form.</p>
             </div>
         </div>
 
@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    form.addEventListener("submit", function (event) {
+    form.addEventListener("submit", async function (event) {
         event.preventDefault();
         status.classList.remove("visible");
         status.textContent = "";
@@ -198,12 +198,47 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        status.textContent = "Validation successful. This demo has no backend, so your message has not been sent.";
-        status.classList.add("visible");
-        form.reset();
-        Object.keys(fields).forEach(function (key) {
-            clearError(fields[key]);
-        });
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton ? submitButton.textContent : "Submit Message";
+        const payload = {
+            name: fields.name.input.value.trim(),
+            email: fields.email.input.value.trim(),
+            subject: fields.subject.input.value.trim(),
+            message: fields.message.input.value.trim()
+        };
+
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
+        }
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            const result = await response.json().catch(function () { return {}; });
+
+            if (!response.ok) {
+                throw new Error(result.error || "Your message could not be saved. Please try again.");
+            }
+
+            status.textContent = result.message || "Your message was saved successfully.";
+            status.classList.add("visible");
+            form.reset();
+            Object.keys(fields).forEach(function (key) {
+                clearError(fields[key]);
+            });
+        } catch (error) {
+            status.textContent = error.message || "Could not connect to the server. Please try again.";
+            status.classList.add("visible");
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        }
     });
 });
 </script>

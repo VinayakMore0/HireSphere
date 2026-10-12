@@ -1,16 +1,24 @@
-HireSphere page update package
+HireSphere MongoDB integration update
 
-Files:
-- jobs.html, events.html, contact.html: three new pages
-- index.html, about.html, companies.html: existing pages with only navbar link updates
-- style.css: original uploaded stylesheet plus appended styles for the three new pages
-- script.js: copied from the uploaded existing JavaScript, unchanged
+Replace these files in your existing HireSphere project root:
+- companies.html
+- contact.html
+- script.js
 
-Integration:
-1. Back up your existing project folder.
-2. Copy these files into the same folder as your existing website files.
-3. The stylesheet must be named style.css because the HTML pages reference style.css.
-4. register.html is linked in the existing navbar but was not provided in the upload; keep your existing register.html if you have one.
-5. The contact form is front-end demo only. It does not send or store messages.
-6. Events are illustrative examples, not confirmed SPIT events.
-7. Jobs page uses the supplied SPIT Placement Summary 2025-26 PDF. For current openings, use https://placements.spit.ac.in/.
+These files preserve the existing page layout/classes and connect to:
+- GET /api/companies
+- POST /api/contact
+
+The backend server.js must already be running and expose those endpoints.
+Company records are rendered from MongoDB. Contact submissions are posted to the server.
+Do not open the HTML files directly with file://; open them through http://localhost:3000/.
+
+For sample company data, use the seed.js file supplied in the previous instructions. Run:
+node seed.js
+
+Then:
+npm start
+
+Test:
+http://localhost:3000/companies.html
+http://localhost:3000/contact.html
